@@ -381,9 +381,10 @@ public class SwiftFlutterCallkitIncomingPlugin: NSObject, FlutterPlugin, CXProvi
         self.answerCall = call
         sendEvent(SwiftFlutterCallkitIncomingPlugin.ACTION_CALL_ACCEPT, self.data?.toJSON())
 
-         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(5000)) {
+         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2000)) {
             action.fulfill()
          }
+         print("fulfill")
     }
     
 
