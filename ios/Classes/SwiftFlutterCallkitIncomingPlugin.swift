@@ -479,6 +479,7 @@ public class SwiftFlutterCallkitIncomingPlugin: NSObject, FlutterPlugin, CXProvi
         }
         senddefaultAudioInterruptionNofificationToStartAudioResource()
         configurAudioSession()
+        AVAudioSession.sharedInstance().setActive(true);
         self.sendEvent(SwiftFlutterCallkitIncomingPlugin.ACTION_CALL_TOGGLE_AUDIO_SESSION, [ "isActivate": true ])
     }
     
