@@ -295,11 +295,12 @@ public class SwiftFlutterCallkitIncomingPlugin: NSObject, FlutterPlugin, CXProvi
     func configurAudioSession(){
         let session = AVAudioSession.sharedInstance()
         do{
-            try session.setCategory(AVAudioSession.Category.playAndRecord, options: AVAudioSession.CategoryOptions.allowBluetooth)
+           // try session.setCategory(AVAudioSession.Category.playback, options: AVAudioSession.CategoryOptions.allowBluetooth)
             try session.setMode(self.getAudioSessionMode(data?.audioSessionMode))
             try session.setPreferredSampleRate(data?.audioSessionPreferredSampleRate ?? 44100.0)
             try session.setPreferredIOBufferDuration(data?.audioSessionPreferredIOBufferDuration ?? 0.005)
         }catch{
+            print("CONFIG ERR ${}")
             print(error)
         }
     }
@@ -380,13 +381,12 @@ public class SwiftFlutterCallkitIncomingPlugin: NSObject, FlutterPlugin, CXProvi
         self.answerCall = call
         sendEvent(SwiftFlutterCallkitIncomingPlugin.ACTION_CALL_ACCEPT, self.data?.toJSON())
 
-//          DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2000)) {
-//             action.fulfill()
-//             print("action.fulfill")
-//          }
 
+         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2000)) {
             action.fulfill()
-            print("action.fulfill1")
+            print("action.fulfill")
+         }
+
     }
     
 
